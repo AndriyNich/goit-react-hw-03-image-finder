@@ -1,4 +1,5 @@
 import React from 'react';
+import throttle from 'lodash.throttle';
 import { AiOutlineSearch } from 'react-icons/ai';
 import {
   ButtonSearch,
@@ -9,10 +10,15 @@ import {
 } from './Searchbar.styled';
 
 export const Searchbar = ({ onSubmit }) => {
+  const handleSendSubmit = function (value) {
+    onSubmit(value);
+  };
+
+  const handleSubmitThrottle = throttle(handleSendSubmit, 3000);
+
   const handleSubmit = event => {
     event.preventDefault();
-    const { search } = event.target.elements;
-    onSubmit(search.value);
+    handleSubmitThrottle(event.target.elements.search.value);
   };
 
   return (
@@ -26,8 +32,8 @@ export const Searchbar = ({ onSubmit }) => {
         <InputSearch
           name="search"
           type="text"
-          // autocomplete="off"
-          // autofocus
+          autocomplete="off"
+          autoFocus
           placeholder="Search images and photos"
         />
       </FormSearch>

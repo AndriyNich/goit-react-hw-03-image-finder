@@ -14,6 +14,15 @@ export const Overlay = styled.div`
 `;
 
 export const ModalWraper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px);
+  max-height: calc(100vh - 48px);
+
+  & img {
+    display: block;
+    width: 90%;
+    height: auto;
+  }
 `;
