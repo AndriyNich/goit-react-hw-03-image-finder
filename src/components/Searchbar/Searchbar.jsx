@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import throttle from 'lodash.throttle';
 import { AiOutlineSearch } from 'react-icons/ai';
 import {
@@ -39,4 +40,8 @@ export const Searchbar = ({ onSubmit }) => {
       </FormSearch>
     </HeaderSearch>
   );
+};
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 };
