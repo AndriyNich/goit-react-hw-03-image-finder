@@ -43,6 +43,9 @@ export class App extends Component {
     }
     this.setState({ status: Status.LOAD, gallery: [] });
     const newPictures = await loadPictures(searchLine, 1);
+    if (newPictures.hits.length === 0) {
+      toast.error('Data not found', toastParams);
+    }
     this.setState({
       gallery: newPictures.hits,
       search: searchLine,
@@ -57,10 +60,16 @@ export class App extends Component {
       this.state.search,
       this.state.page + 1
     );
+
+    const status =
+      this.state.gallery.length + newPictures.hits.length >= newPictures.total
+        ? Status.IDLE
+        : Status.RESOLVED;
+
     this.setState({
       gallery: [...this.state.gallery, ...newPictures.hits],
       page: this.state.page + 1,
-      status: Status.RESOLVED,
+      status: status,
     });
   };
 
@@ -82,6 +91,7 @@ export class App extends Component {
         />
         {this.state.status === Status.LOAD && <Loader />}
         {this.state.status !== Status.LOAD &&
+          this.state.status !== Status.IDLE &&
           this.state.gallery.length !== 0 && (
             <Button onClick={this.handleMore} />
           )}

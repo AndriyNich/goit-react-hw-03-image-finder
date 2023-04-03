@@ -6,8 +6,8 @@ import { ImageList } from './ImageGallery.styled';
 export const ImageGallery = ({ gallery, onClick }) => {
   return (
     <ImageList>
-      {gallery.map(elem => {
-        return <ImageGalleryItem elem={elem} key={elem.id} onClick={onClick} />;
+      {gallery.map((elem, idx) => {
+        return <ImageGalleryItem elem={elem} key={idx} onClick={onClick} />;
       })}
     </ImageList>
   );
