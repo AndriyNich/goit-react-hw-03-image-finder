@@ -3,7 +3,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://pixabay.com';
 
 export const loadPictures = async (search, page) => {
-  const result = await axios.get('/api', {
+  const result = await axios.get('/api/', {
     params: {
       q: search,
       page: page,
