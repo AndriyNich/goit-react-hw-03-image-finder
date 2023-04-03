@@ -17,12 +17,12 @@ export const ModalWraper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 48px);
+  max-width: calc(100vw - 64px);
+  max-height: calc(100vh - 64px);
 
   & img {
     display: block;
-    width: 90%;
+    width: 100%;
     height: auto;
   }
 `;
